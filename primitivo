@@ -1,0 +1,25 @@
+#!/usr/bin/env python3
+import argparse
+import subprocess
+import sys
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Primitivo project helper commands')
+    sparser = parser.add_subparsers()
+    parser_toolchain = sparser.add_parser('toolchain')
+    parser_toolchain.add_argument('cmd', choices=['start', 'stop'], type=str)
+    args = parser.parse_args()
+    print(args)
+
+    if args.cmd == 'start':
+        subprocess.run(['docker-compose', '-f', 'docker/impish-gcc11/docker-compose.yml', 'build'])
+        subprocess.run(['docker-compose', '-f', 'docker/impish-gcc11/docker-compose.yml', 'up', '-d'])
+    elif args.cmd == 'stop':
+        subprocess.run(['docker-compose', '-f', 'docker/impish-gcc11/docker-compose.yml', 'down'])
+
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())
