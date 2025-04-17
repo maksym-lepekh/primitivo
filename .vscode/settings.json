@@ -1,0 +1,6 @@
+{
+	"clangd.arguments": [
+		"--compile-commands-dir=.vscode/clangd"
+	],
+	"cmake.copyCompileCommands": "${workspaceRoot}/.vscode/clangd/compile_commands.json"
+}

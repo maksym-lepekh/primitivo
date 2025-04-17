@@ -1,0 +1,48 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+      "major": 3,
+      "minor": 28,
+      "patch": 0
+    },
+    "configurePresets": [
+      {
+        "name": "default",
+        "binaryDir": "${sourceDir}/cmake-build-${presetName}",
+        "generator": "Ninja",
+        "cacheVariables": {
+          "CMAKE_CXX_COMPILER": "clang++",
+          "CMAKE_BUILD_TYPE": "Debug",
+          "CMAKE_CXX_FLAGS": "-stdlib=libc++",
+          "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+          "CMAKE_COMPILE_WARNING_AS_ERROR": "ON",
+          "CMAKE_EXE_LINKER_FLAGS": "-static",
+          "CMAKE_PROJECT_TOP_LEVEL_INCLUDES": "cmake/import-std.cmake"
+        },
+        "warnings": {
+          "dev": false
+        }
+      }
+    ],
+    "buildPresets": [
+      {
+        "name": "default",
+        "configurePreset": "default"
+      }
+    ],
+    "workflowPresets": [
+      {
+        "name": "default",
+        "steps": [
+          {
+            "type": "configure",
+            "name": "default"
+          },
+          {
+            "type": "build",
+            "name": "default"
+          }
+        ]
+      }
+    ]
+  }
